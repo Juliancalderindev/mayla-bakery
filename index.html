@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mayla Bakery — Brownies N' More</title>
+  <link rel="icon" type="image/png" href="img/maylabakerypng.png">
+  
+  <!-- Google Fonts: Fredoka One (retro/groovy) + Nunito (body) -->
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Hoja de estilos -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- ══════════════════════════════════
+       NAVEGACIÓN
+       ══════════════════════════════════ -->
+  <nav>
+    <a href="#hero" class="nav-logo">
+      <img src="img/maylabakerypng.png" alt="Mayla Bakery">
+    </a>
+    <ul class="nav-links">
+      <li><a href="#menu">Menú</a></li>
+      <li><a href="#pedido">Pedidos</a></li>
+      <li><a href="#testimonios">Reseñas</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+    <button class="nav-cart" onclick="toggleCart()">
+      🛒 Mi pedido
+      <span class="cart-count" id="cartCount">0</span>
+    </button>
+  </nav>
+
+  <!-- ══════════════════════════════════
+       HERO
+       ══════════════════════════════════ -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-dots"></div>
+
+    <div class="hero-text">
+      <div class="hero-eyebrow">Brownies N' More · Hecho con amor</div>
+      <h1>Brownies<em>artesanales</em>irresistibles</h1>
+      <p class="hero-desc">Cada pieza horneada con ingredientes de primera, chocolate belga y mucho cariño. Perfectos para regalar, compartir o darte un antojo.</p>
+      <div class="hero-ctas">
+        <a href="#menu" class="btn-primary">Ver menú completo →</a>
+        <a href="#pedido" class="btn-outline">Hacer mi pedido</a>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div style="position:relative">
+        <div class="badge-float left">🍫 Sin conservantes</div>
+        <div class="hero-card-float">
+          <div class="hero-card-img">🍫</div>
+          <div class="hero-card-name">Brownie Tradicional</div>
+          <div class="hero-card-sub">Cacao al 58% · Choco chips</div>
+          <div class="hero-card-price">$9.000 <span>/ unidad</span></div>
+        </div>
+        <div class="badge-float right">⭐ 100% casero</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════
+       PROPUESTA DE VALOR
+       ══════════════════════════════════ -->
+  <section id="features">
+    <div class="features-inner">
+      <div class="feature-item">
+        <span class="feature-icon">🍫</span>
+        <div class="feature-title">Chocolate Cordillera premium</div>
+        <p class="feature-desc">Solo usamos chocolate de alta calidad para lograr ese sabor intenso y textura perfecta.</p>
+      </div>
+      <div class="feature-item">
+        <span class="feature-icon">💕</span>
+        <div class="feature-title">Hecho a mano, con amor</div>
+        <p class="feature-desc">Recetas propias perfeccionadas durante años. Cada brownie es único y horneado bajo pedido.</p>
+      </div>
+      <div class="feature-item">
+        <span class="feature-icon">🚚</span>
+        <div class="feature-title">Envío a domicilio</div>
+        <p class="feature-desc">Te lo llevamos fresquito. Coordina tu entrega por WhatsApp y recíbelo en el día.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════
+       MENÚ
+       ══════════════════════════════════ -->
+  <section id="menu">
+    <div class="menu-header">
+      <div>
+        <div class="section-label">Nuestras creaciones</div>
+        <h2>El <em>menú</em></h2>
+      </div>
+      <p class="menu-desc">Todos horneados al momento. Disponibles por unidad, media docena, docena y más.</p>
+    </div>
+
+    <div class="filter-bar">
+      <button class="filter-btn active" onclick="filterProducts('all', this)">Todos</button>
+      <button class="filter-btn" onclick="filterProducts('clasico', this)">Clásicos</button>
+      <button class="filter-btn" onclick="filterProducts('especial', this)">Especiales</button>
+    </div>
+
+    <div class="products-grid" id="productsGrid"></div>
+  </section>
+
+  <!-- ══════════════════════════════════
+       PEDIDO
+       ══════════════════════════════════ -->
+  <section id="pedido">
+    <div class="section-label">Fácil y rápido</div>
+    <h2>Haz tu <em>pedido</em></h2>
+    <br><br>
+
+    <div class="order-layout">
+
+      <!-- Formulario -->
+      <div class="order-form-wrap">
+        <div class="form-title">📋 Datos del pedido</div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Nombre</label>
+            <input type="text" class="form-input" placeholder="Tu nombre">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Apellido</label>
+            <input type="text" class="form-input" placeholder="Tu apellido">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">WhatsApp</label>
+          <input type="tel" class="form-input" placeholder="+57 300 000 0000">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Dirección de entrega</label>
+          <input type="text" class="form-input" placeholder="Calle, barrio, ciudad">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Fecha de entrega</label>
+            <input type="date" class="form-input">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Hora preferida</label>
+            <select class="form-select">
+              <option>9:00 am – 12:00 pm</option>
+              <option>12:00 pm – 3:00 pm</option>
+              <option>3:00 pm – 6:00 pm</option>
+              <option>6:00 pm – 8:00 pm</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">¿Es para regalo? (opcional)</label>
+          <textarea class="form-textarea" placeholder="Escribe un mensaje especial para incluir en la caja..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Método de pago</label>
+          <select class="form-select">
+            <option>Nequi / Daviplata</option>
+            <option>Transferencia bancaria</option>
+            <option>Efectivo contraentrega</option>
+          </select>
+        </div>
+
+        <button class="btn-submit" onclick="submitOrder()">✓ Confirmar pedido</button>
+      </div>
+
+      <!-- Resumen -->
+      <div class="order-summary">
+        <div class="summary-title">🛒 Resumen del pedido</div>
+        <div class="summary-items" id="summaryItems">
+          <div class="summary-empty">Tu carrito está vacío.<br>Agrega productos desde el menú.</div>
+        </div>
+        <div class="summary-total">
+          <span class="total-label">Total estimado</span>
+          <span class="total-amount" id="summaryTotal">$0</span>
+        </div>
+        <button class="whatsapp-btn" onclick="sendWhatsApp()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+          Enviar pedido por WhatsApp
+        </button>
+        <p class="summary-note">También puedes completar el formulario y nosotros te contactaremos para confirmar.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════
+       TESTIMONIOS
+       ══════════════════════════════════ -->
+  <section id="testimonios">
+    <div class="section-label">Lo que dicen nuestros clientes</div>
+    <h2><em>Reseñas</em> reales</h2>
+    <div class="testimonios-grid">
+      <div class="testimonio-card">
+        <p class="testimonio-text">Los pedí para mi cumpleaños y todos quedaron encantados. El brownie de arequipe es lo mejor que he probado en mi vida.</p>
+        <div class="testimonio-footer">
+          <div class="testimonio-avatar">👩</div>
+          <div>
+            <div class="testimonio-name">Gina De La Cruz</div>
+            <div class="testimonio-stars">★★★★★</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonio-card">
+        <p class="testimonio-text">Super ricos y esponjosos, nada que ver con los que venden por ahí. La presentación en caja es súper linda para regalar. ¡Ya voy en mi tercer pedido!</p>
+        <div class="testimonio-footer">
+          <div class="testimonio-avatar">👩</div>
+          <div>
+            <div class="testimonio-name">Liliana De La Cruz</div>
+            <div class="testimonio-stars">★★★★★</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonio-card">
+        <p class="testimonio-text">Pedí los veganos sin saber si me iban a gustar y quedé impresionada. Llegan frescos, bien empacados y a tiempo. 100% recomendados.</p>
+        <div class="testimonio-footer">
+          <div class="testimonio-avatar">👩</div>
+          <div>
+            <div class="testimonio-name">Laura Vergara</div>
+            <div class="testimonio-stars">★★★★★</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════
+       CONTACTO
+       ══════════════════════════════════ -->
+  <section id="contacto">
+    <div class="section-label">Escríbenos</div>
+    <h2>¿Tienes alguna <em>duda?</em></h2>
+    <p class="contacto-desc">Estamos felices de ayudarte con tu pedido, resolver dudas o crear algo especial para tu evento.</p>
+    <div class="contacto-grid">
+      <a href="https://wa.me/573006619230" class="contacto-item">
+        <span class="contacto-item-icon">💬</span>
+        <div class="contacto-item-label">WhatsApp</div>
+        <div class="contacto-item-value">+57 300 661 9230</div>
+      </a>
+      <a href="https://instagram.com/maylabakery" class="contacto-item">
+        <span class="contacto-item-icon">📸</span>
+        <div class="contacto-item-label">Instagram</div>
+        <div class="contacto-item-value">@maylabakery</div>
+      </a>
+      <a href="mailto:hola@maylabakery.com" class="contacto-item">
+        <span class="contacto-item-icon">✉️</span>
+        <div class="contacto-item-label">Email</div>
+        <div class="contacto-item-value">hola@maylabakery.com</div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════
+       FOOTER
+       ══════════════════════════════════ -->
+  <footer>
+    <div class="footer-logo">
+      <img src="img/maylabakerypng.png" alt="Mayla Bakery">
+    </div>
+    <span>© 2026 · Mayla Bakery — Brownies N' More</span>
+    <span>Barranquilla, Colombia 🇨🇴</span>
+  </footer>
+
+  <!-- ══════════════════════════════════
+       CARRITO LATERAL
+       ══════════════════════════════════ -->
+  <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+  <div class="cart-drawer" id="cartDrawer">
+    <div class="cart-drawer-header">
+      <div class="cart-drawer-title">🛒 Tu pedido</div>
+      <button class="cart-close" onclick="toggleCart()">×</button>
+    </div>
+    <div id="cartItems">
+      <div class="cart-empty">Aún no has agregado nada.<br>¡Elige tus brownies favoritos! 🍫</div>
+    </div>
+    <div class="cart-total-bar" id="cartTotalBar" style="display:none">
+      <div class="cart-total-row">
+        <span>Total</span>
+        <span id="cartTotal">$0</span>
+      </div>
+      <button class="cart-checkout-btn" onclick="toggleCart(); document.getElementById('pedido').scrollIntoView({behavior:'smooth'})">
+        Ir a completar pedido →
+      </button>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <!-- Script (al final del body) -->
+  <script src="js/app.js"></script>
+
+</body>
+</html>
