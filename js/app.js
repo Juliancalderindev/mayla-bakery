@@ -182,18 +182,62 @@ function sendWhatsApp() {
     return;
   }
 
-  const items = cart
-    .map(i => `• ${i.name} x${i.qty} = $${(i.price * i.qty).toLocaleString('es-CO')}`)
-    .join('\n');
+  const nombre = document.getElementById('nombre').value;
+  const apellido = document.getElementById('apellido').value;
+  const whatsapp = document.getElementById('whatsapp').value;
+  const direccion = document.getElementById('direccion').value;
+  const fechaEntrega = document.getElementById('fechaEntrega').value;
+  const horaEntrega = document.getElementById('horaEntrega').value;
+  const mensajeRegalo = document.getElementById('mensajeRegalo').value;
+  const metodoPago = document.getElementById('metodoPago').value;
+
+  if (!nombre || !apellido || !whatsapp || !direccion || !fechaEntrega) {
+    showToast('⚠️ Completa todos los campos obligatorios');
+    return;
+  }
+
+  const items = cart.map(i =>
+    `• ${i.name} x${i.qty} = $${(i.price * i.qty).toLocaleString('es-CO')}`
+  ).join('\n');
+
   const total = cart.reduce((sum, i) => sum + i.price * i.qty, 0);
 
   const message = encodeURIComponent(
-    `¡Hola Mayla Bakery! 🍫 Quiero hacer un pedido:\n\n${items}\n\n*Total: $${total.toLocaleString('es-CO')}*\n\n¿Me confirmas disponibilidad? ¡Gracias!`
+`🍫 *NUEVO PEDIDO - MAYLA BAKERY*
+
+👤 Cliente: ${nombre} ${apellido}
+📱 WhatsApp: ${whatsapp}
+📍 Dirección: ${direccion}
+
+📅 Fecha de entrega: ${fechaEntrega}
+🕒 Hora: ${horaEntrega}
+
+🎁 Mensaje regalo: ${mensajeRegalo || 'Ninguno'}
+
+💳 Método de pago: ${metodoPago}
+
+━━━━━━━━━━━━━━
+🛒 PRODUCTOS:
+${items}
+
+💰 TOTAL: $${total.toLocaleString('es-CO')}`
   );
 
-  // 👉 Reemplaza con el número real de Mayla (formato: 57XXXXXXXXXX)
   const phoneNumber = '573006619230';
+
   window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+
+  cart = [];
+  updateCart();
+
+  document.getElementById('nombre').value = '';
+  document.getElementById('apellido').value = '';
+  document.getElementById('whatsapp').value = '';
+  document.getElementById('direccion').value = '';
+  document.getElementById('fechaEntrega').value = '';
+  document.getElementById('mensajeRegalo').value = '';
+
+  showToast('✅ Pedido enviado con éxito');
 }
 
 /* ══════════════════════════════════
